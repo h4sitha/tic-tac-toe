@@ -7,3 +7,14 @@ function Gameboard() {
 
     console.log(gameboard);
 }
+
+const players = [
+    {
+        name: "PlayerOne",
+        symbol: "X"
+    },
+    {
+        name: "PlayerTwo",
+        symbol: "O"
+    }
+]
