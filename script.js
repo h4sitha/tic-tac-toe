@@ -2,7 +2,7 @@ function Gameboard() {
     const gameboard = [];
 
     for (let i=0; i < 9; i++) {
-        gameboard.push("0");
+        gameboard.push(Cell());
     }
 
     console.log(gameboard);
@@ -18,3 +18,20 @@ const players = [
         symbol: "O"
     }
 ]
+
+function Cell() {
+    const value = 0;
+
+    function updateValue(playerSymbol) {
+        value = playerSymbol;
+    }
+
+    function getValue() {
+        return value;
+    }
+
+    return {
+        getValue,
+        updateValue
+    }
+}
