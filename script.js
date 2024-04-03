@@ -1,14 +1,9 @@
 function Gameboard() {
-    const gameboard = []
+    const gameboard = [];
 
-    for (let i=0; i < 3; i++) {
-        const row = [];
-        for (let k=0; k < 3; k++) {
-            row.push("0");
-        }
-        gameboard.push(row);
+    for (let i=0; i < 9; i++) {
+        gameboard.push("0");
     }
 
-    console.log(gameboard)
-    
+    console.log(gameboard);
 }
