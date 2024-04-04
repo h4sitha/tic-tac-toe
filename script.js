@@ -72,7 +72,7 @@ function Cell() {
     // Check for winner
         // consecutive signs:   012     345     678     (but not 234, 456) can't use i+1 and i+2.
         // vertical:            036     147     258
-        // cross lines:         048     246
+        // cross lines:         048     246             first: +4, second: +2
 
         //      0 1 2
         //      3 4 5
@@ -94,6 +94,22 @@ function Cell() {
                     if (currentBoard[i].getValue() === currentBoard[i + 3].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 6].getValue()) {
                             console.log(`${i}: ${currentBoard[i + k].getValue()}, vertical`)
+                    }
+                }
+            }
+            if (currentBoard[i].getValue() && i === 0) {
+                for (let k=0; k < 9; k+=4) {
+                    if (currentBoard[i].getValue() === currentBoard[i + 4].getValue() &&
+                        currentBoard[i].getValue() === currentBoard[i + 8].getValue()) {
+                            console.log(`${i}: ${currentBoard[i + k].getValue()}, cross`)
+                    }
+                }
+            }
+            if (currentBoard[i].getValue() && i === 2) {
+                for (let k=0; k < 3; k++) {
+                    if (currentBoard[i].getValue() === currentBoard[i + 2].getValue() &&
+                        currentBoard[i].getValue() === currentBoard[i + 4].getValue()) {
+                            console.log(`${i}: ${currentBoard[i].getValue()}, cross`)
                     }
                 }
             }
