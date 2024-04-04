@@ -6,10 +6,15 @@ function Gameboard() {
     }
 
     function getBoard() {
-        // return gameboard;
+        return gameboard;
+    }
+
+    function printBoard() {
+        let tempBoard = [];
         for (let i=0; i < gameboard.length; i++) {
-            console.log(gameboard[i].getValue());
+            tempBoard.push(gameboard[i].getValue());
         }
+        console.log(tempBoard);
     }
 
     function changeValue(player, cell) {
@@ -18,7 +23,8 @@ function Gameboard() {
 
     return {
         getBoard,
-        changeValue
+        changeValue,
+        printBoard
     }
 }
 
@@ -76,7 +82,7 @@ function Cell() {
         // for this I need a function in the Gameboard
         // also send currentPlayer() value with that.
         board.changeValue(getCurrentPlayer().symbol, cell);
-        console.log(board.getBoard());
+        console.log(board.printBoard());
 
         switchPlayer();
     }
