@@ -8,17 +8,6 @@ function Gameboard() {
     console.log(gameboard);
 }
 
-const players = [
-    {
-        name: "PlayerOne",
-        symbol: "X"
-    },
-    {
-        name: "PlayerTwo",
-        symbol: "O"
-    }
-]
-
 function Cell() {
     const value = 0;
 
@@ -34,4 +23,26 @@ function Cell() {
         getValue,
         updateValue
     }
+}
+
+function Gameplay() {
+    // Show current player
+    const players = [
+        {
+            name: "PlayerOne",
+            symbol: "X"
+        },
+        {
+            name: "PlayerTwo",
+            symbol: "O"
+        }
+    ]
+
+    let currentPlayer = players[0];
+
+    // Play round
+
+    // After every round print the board
+
+    // Announce the winner
 }
