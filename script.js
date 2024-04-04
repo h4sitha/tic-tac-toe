@@ -85,7 +85,7 @@ function Cell() {
                 for (let k=0; k < 3; k++) {
                     if (currentBoard[i].getValue() === currentBoard[i + 1].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 2].getValue()) {
-                            console.log(`${i}: ${currentBoard[i + k].getValue()}, horizontal`)
+                            return true;
                     }
                 }
             }
@@ -93,7 +93,7 @@ function Cell() {
                 for (let k=0; k < 7; k+=3) {
                     if (currentBoard[i].getValue() === currentBoard[i + 3].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 6].getValue()) {
-                            console.log(`${i}: ${currentBoard[i + k].getValue()}, vertical`)
+                            return true;
                     }
                 }
             }
@@ -101,7 +101,7 @@ function Cell() {
                 for (let k=0; k < 9; k+=4) {
                     if (currentBoard[i].getValue() === currentBoard[i + 4].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 8].getValue()) {
-                            console.log(`${i}: ${currentBoard[i + k].getValue()}, cross`)
+                            return true;
                     }
                 }
             }
@@ -109,7 +109,7 @@ function Cell() {
                 for (let k=0; k < 3; k++) {
                     if (currentBoard[i].getValue() === currentBoard[i + 2].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 4].getValue()) {
-                            console.log(`${i}: ${currentBoard[i].getValue()}, cross`)
+                            return true;
                     }
                 }
             }
@@ -128,8 +128,11 @@ function Cell() {
             console.log(`${getCurrentPlayer().name}'s turn...`);
             board.changeValue(getCurrentPlayer().symbol, cell);
             console.log(board.printBoard());
-            
-            checkWinner();
+            let isGameOver = checkWinner();
+            if (isGameOver) {
+                console.log("Game Over");
+                return;
+            }
             // switchPlayer();
         } else {
             console.log("That cell is already marked")
