@@ -77,14 +77,15 @@ function Cell() {
         // Repeat
 
     function playRound(cell) {
-        console.log(`${getCurrentPlayer().name}'s turn...`);
-        // Use the parameter cell to change value of the cell
-        // for this I need a function in the Gameboard
-        // also send currentPlayer() value with that.
-        board.changeValue(getCurrentPlayer().symbol, cell);
-        console.log(board.printBoard());
+        if (!board.getBoard()[cell].getValue()) {
+            console.log(`${getCurrentPlayer().name}'s turn...`);
+            board.changeValue(getCurrentPlayer().symbol, cell);
+            console.log(board.printBoard());
 
-        switchPlayer();
+            switchPlayer();
+        } else {
+            console.log("That cell is already marked")
+        }
     }
 
     // Announce the winner
