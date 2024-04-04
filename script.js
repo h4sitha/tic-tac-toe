@@ -165,7 +165,8 @@ const game = (function Gameplay() {
     }
 
     return {
-        playGame
+        playGame,
+        getCurrentPlayer
     }
     
 })();
@@ -185,8 +186,9 @@ function gameDisplay() {
     }
 
     boardDiv.addEventListener('click', (e) => {
-        const cell = e.target.dataset.index;
-        console.log(cell);
-        game.playGame(cell)
+        const cell = e.target;
+        console.log(cell.dataset.index);
+        cell.textContent = game.getCurrentPlayer().symbol;
+        game.playGame(cell.dataset.index);
     })
 }
