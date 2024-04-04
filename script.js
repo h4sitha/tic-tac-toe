@@ -127,6 +127,7 @@ const game = (function Gameplay() {
 
     let isGameOver = false;
     let isGameTied;
+    let gameStatusPara;
 
     function playGame(cell) {
         if (!isGameOver) {
@@ -136,12 +137,11 @@ const game = (function Gameplay() {
 
     function playRound(cell) {
         if (cell < board.getBoard().length && cell >= 0 && !board.getBoard()[cell].getValue()) {
-            console.log(`${getCurrentPlayer().name}'s turn...`);
             board.changeValue(getCurrentPlayer().symbol, cell);
             console.log(board.printBoard());
             isGameOver = checkWinner();
             if (isGameOver) {
-                console.log("Game Over");
+                gameStatusPara = "Game Over";
                 announceWinner(winnerSymbol);
             }
             isGameTied = checkTies();
@@ -150,19 +150,19 @@ const game = (function Gameplay() {
             }
             switchPlayer();
         } else if (cell >= board.getBoard().length || cell < 0) {
-            console.log("Enter a valid cell number!")
+            gameStatusPara = "Enter a valid cell number!"
         } else {
-            console.log("That cell is already marked")
+            gameStatusPara = "That cell is already marked"
         }
     }
 
     function announceWinner(winner) {
         const player = (winner === players[0].symbol) ? players[0] : players[1];
-        console.log(`Winner is ${player.name}`)
+        gameStatusPara = `Game over! ${player.name} wins!`
     }
 
     function gameTied() {
-        console.log(`It's a draw.`)
+        gameStatusPara = `It's a draw.`
     }
 
     function showGameStatus() {
@@ -171,10 +171,15 @@ const game = (function Gameplay() {
         }
     }
 
+    function showGameStatusPara() {
+        return gameStatusPara;
+    }
+
     return {
         playGame,
         getCurrentPlayer,
-        showGameStatus
+        showGameStatus,
+        showGameStatusPara
     }
     
 })();
@@ -199,6 +204,7 @@ function gameDisplay() {
             console.log(cell.dataset.index);
             cell.textContent = game.getCurrentPlayer().symbol;
             game.playGame(cell.dataset.index);
+            statusPara.textContent = game.showGameStatusPara();
         }
     })
 }
