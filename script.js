@@ -180,6 +180,11 @@ function gameDisplay() {
     for(let i=0; i < board.getBoard().length; i++) {
         const cell = document.createElement('button');
         cell.classList.add('cell');
+        cell.dataset.index = i;
         boardDiv.appendChild(cell);
     }
+
+    boardDiv.addEventListener('click', (e) => {
+        console.log(e.target.dataset.index);
+    })
 }
