@@ -45,7 +45,7 @@ function Cell() {
     }
 }
 
-// function Gameplay() {
+const game = (function Gameplay() {
     const board = Gameboard();
 
     const players = [
@@ -131,15 +131,21 @@ function Cell() {
                 console.log("Game Over");
                 announceWinner(winnerSymbol);
             }
-            // switchPlayer();
+            switchPlayer();
         } else if (cell >= board.getBoard().length || cell < 0) {
             console.log("Enter a valid cell number!")
         } else {
             console.log("That cell is already marked")
         }
     }
+
     function announceWinner(winner) {
         const player = (winner === players[0].symbol) ? players[0] : players[1];
         console.log(`Winner is ${player.name}`)
     }
-// }
+
+    return {
+        playGame
+    }
+    
+})();
