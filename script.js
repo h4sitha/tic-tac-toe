@@ -5,7 +5,13 @@ function Gameboard() {
         gameboard.push(Cell());
     }
 
-    console.log(gameboard);
+    function getBoard() {
+        return gameboard;
+    }
+
+    return {
+        getBoard
+    }
 }
 
 function Cell() {
@@ -26,6 +32,7 @@ function Cell() {
 }
 
 // function Gameplay() {
+    const board = Gameboard();
     // Show current player
     const players = [
         {
@@ -56,7 +63,8 @@ function Cell() {
         // Repeat
 
     function playRound() {
-        console.log(`${getCurrentPlayer().name}'s turn...`)
+        console.log(`${getCurrentPlayer().name}'s turn...`);
+        console.log(board.getBoard());
 
         switchPlayer();
     }
