@@ -6,16 +6,24 @@ function Gameboard() {
     }
 
     function getBoard() {
-        return gameboard;
+        // return gameboard;
+        for (let i=0; i < gameboard.length; i++) {
+            console.log(gameboard[i].getValue());
+        }
+    }
+
+    function changeValue(player, cell) {
+        gameboard[cell].updateValue(player)
     }
 
     return {
-        getBoard
+        getBoard,
+        changeValue
     }
 }
 
 function Cell() {
-    const value = 0;
+    let value = 0;
 
     function updateValue(playerSymbol) {
         value = playerSymbol;
@@ -62,8 +70,12 @@ function Cell() {
         // Switch player
         // Repeat
 
-    function playRound() {
+    function playRound(cell) {
         console.log(`${getCurrentPlayer().name}'s turn...`);
+        // Use the parameter cell to change value of the cell
+        // for this I need a function in the Gameboard
+        // also send currentPlayer() value with that.
+        board.changeValue(getCurrentPlayer().symbol, cell);
         console.log(board.getBoard());
 
         switchPlayer();
