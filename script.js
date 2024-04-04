@@ -44,6 +44,10 @@ function Cell() {
         return currentPlayer;
     }
 
+    function switchPlayer() {
+        currentPlayer = (currentPlayer === players[0]) ? players[1] : players [0];
+    }
+
     // Play round
         // Print current player
         // Change value of the cell
@@ -53,6 +57,8 @@ function Cell() {
 
     function playRound() {
         console.log(`${getCurrentPlayer().name}'s turn...`)
+
+        switchPlayer();
     }
 
     // Announce the winner
