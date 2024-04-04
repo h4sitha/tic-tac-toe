@@ -113,6 +113,18 @@ const game = (function Gameplay() {
         }
     }
 
+    function checkTies() {
+        const currentBoard = board.getBoard();
+        let isTied = true;
+        for (let i=0; i < currentBoard.length; i++) {
+            if (!currentBoard[i].getValue()) {
+                isTied = false;
+                break;
+            }
+        }
+        return isTied;
+    }
+
     let isGameOver = false;
 
     function playGame(cell) {
@@ -131,6 +143,10 @@ const game = (function Gameplay() {
                 console.log("Game Over");
                 announceWinner(winnerSymbol);
             }
+            let isGameTied = checkTies();
+            if (isGameTied) {
+                gameTied();
+            }
             switchPlayer();
         } else if (cell >= board.getBoard().length || cell < 0) {
             console.log("Enter a valid cell number!")
@@ -142,6 +158,10 @@ const game = (function Gameplay() {
     function announceWinner(winner) {
         const player = (winner === players[0].symbol) ? players[0] : players[1];
         console.log(`Winner is ${player.name}`)
+    }
+
+    function gameTied() {
+        console.log(`It's a draw.`)
     }
 
     return {
