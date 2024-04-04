@@ -126,6 +126,7 @@ const game = (function Gameplay() {
     }
 
     let isGameOver = false;
+    let isGameTied;
 
     function playGame(cell) {
         if (!isGameOver) {
@@ -143,7 +144,7 @@ const game = (function Gameplay() {
                 console.log("Game Over");
                 announceWinner(winnerSymbol);
             }
-            let isGameTied = checkTies();
+            isGameTied = checkTies();
             if (isGameTied) {
                 gameTied();
             }
@@ -164,9 +165,16 @@ const game = (function Gameplay() {
         console.log(`It's a draw.`)
     }
 
+    function showGameStatus() {
+        if (isGameOver || isGameTied) {
+            return "GameOver";
+        }
+    }
+
     return {
         playGame,
-        getCurrentPlayer
+        getCurrentPlayer,
+        showGameStatus
     }
     
 })();
