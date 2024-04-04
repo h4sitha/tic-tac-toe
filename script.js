@@ -82,11 +82,18 @@ function Cell() {
         const currentBoard = board.getBoard();
         for (let i=0; i<currentBoard.length; i++) {
             if (currentBoard[i].getValue() && (i === 0 || i === 3 || i === 6 )) {
-                // console.log(`${i} = ${currentBoard[i].getValue()}`);
                 for (let k=0; k < 3; k++) {
                     if (currentBoard[i].getValue() === currentBoard[i + 1].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 2].getValue()) {
-                            console.log(`${i}: ${currentBoard[i + k].getValue()}`)
+                            console.log(`${i}: ${currentBoard[i + k].getValue()}, horizontal`)
+                    }
+                }
+            }
+            if (currentBoard[i].getValue() && (i === 0 || i === 1 || i === 2)) {
+                for (let k=0; k < 7; k+=3) {
+                    if (currentBoard[i].getValue() === currentBoard[i + 3].getValue() &&
+                        currentBoard[i].getValue() === currentBoard[i + 6].getValue()) {
+                            console.log(`${i}: ${currentBoard[i + k].getValue()}, vertical`)
                     }
                 }
             }
