@@ -194,9 +194,11 @@ function gameDisplay() {
     }
 
     boardDiv.addEventListener('click', (e) => {
-        const cell = e.target;
-        console.log(cell.dataset.index);
-        cell.textContent = game.getCurrentPlayer().symbol;
-        game.playGame(cell.dataset.index);
+        if (game.showGameStatus() !== "GameOver") {
+            const cell = e.target;
+            console.log(cell.dataset.index);
+            cell.textContent = game.getCurrentPlayer().symbol;
+            game.playGame(cell.dataset.index);
+        }
     })
 }
