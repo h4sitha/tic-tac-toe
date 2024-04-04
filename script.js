@@ -120,12 +120,20 @@ function Cell() {
         // Switch player
         // Repeat
 
+    let isGameOver = false;
+
+    function playGame(cell) {
+        if (!isGameOver) {
+            playRound(cell);
+        }
+    }
+
     function playRound(cell) {
         if (!board.getBoard()[cell].getValue()) {
             console.log(`${getCurrentPlayer().name}'s turn...`);
             board.changeValue(getCurrentPlayer().symbol, cell);
             console.log(board.printBoard());
-            let isGameOver = checkWinner();
+            isGameOver = checkWinner();
             if (isGameOver) {
                 console.log("Game Over");
                 announceWinner(winnerSymbol);
