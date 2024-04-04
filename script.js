@@ -25,7 +25,7 @@ function Cell() {
     }
 }
 
-function Gameplay() {
+// function Gameplay() {
     // Show current player
     const players = [
         {
@@ -40,9 +40,20 @@ function Gameplay() {
 
     let currentPlayer = players[0];
 
-    // Play round
+    function getCurrentPlayer() {
+        return currentPlayer;
+    }
 
-    // After every round print the board
+    // Play round
+        // Print current player
+        // Change value of the cell
+        // Print the board
+        // Switch player
+        // Repeat
+
+    function playRound() {
+        console.log(`${getCurrentPlayer().name}'s turn...`)
+    }
 
     // Announce the winner
-}
+// }
