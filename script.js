@@ -82,7 +82,13 @@ function Cell() {
         const currentBoard = board.getBoard();
         for (let i=0; i<currentBoard.length; i++) {
             if (currentBoard[i].getValue() && (i === 0 || i === 3 || i === 6 )) {
-                console.log(`${i} = ${currentBoard[i].getValue()}`);
+                // console.log(`${i} = ${currentBoard[i].getValue()}`);
+                for (let k=0; k < 3; k++) {
+                    if (currentBoard[i].getValue() === currentBoard[i + 1].getValue() &&
+                        currentBoard[i].getValue() === currentBoard[i + 2].getValue()) {
+                            console.log(`${i}: ${currentBoard[i + k].getValue()}`)
+                    }
+                }
             }
         }
     }
@@ -101,7 +107,7 @@ function Cell() {
             console.log(board.printBoard());
             
             checkWinner();
-            switchPlayer();
+            // switchPlayer();
         } else {
             console.log("That cell is already marked")
         }
