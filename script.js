@@ -47,7 +47,7 @@ function Cell() {
 
 // function Gameplay() {
     const board = Gameboard();
-    // Show current player
+
     const players = [
         {
             name: "PlayerOne",
@@ -69,14 +69,7 @@ function Cell() {
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players [0];
     }
 
-    // Check for winner
-        // consecutive signs:   012     345     678     (but not 234, 456) can't use i+1 and i+2.
-        // vertical:            036     147     258
-        // cross lines:         048     246             first: +4, second: +2
-
-        //      0 1 2
-        //      3 4 5
-        //      6 7 8
+    let winnerSymbol;
 
     function checkWinner() {
         const currentBoard = board.getBoard();
@@ -85,6 +78,7 @@ function Cell() {
                 for (let k=0; k < 3; k++) {
                     if (currentBoard[i].getValue() === currentBoard[i + 1].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 2].getValue()) {
+                            winnerSymbol = currentBoard[i].getValue();
                             return true;
                     }
                 }
@@ -93,6 +87,7 @@ function Cell() {
                 for (let k=0; k < 7; k+=3) {
                     if (currentBoard[i].getValue() === currentBoard[i + 3].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 6].getValue()) {
+                            winnerSymbol = currentBoard[i].getValue();
                             return true;
                     }
                 }
@@ -101,6 +96,7 @@ function Cell() {
                 for (let k=0; k < 9; k+=4) {
                     if (currentBoard[i].getValue() === currentBoard[i + 4].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 8].getValue()) {
+                            winnerSymbol = currentBoard[i].getValue();
                             return true;
                     }
                 }
@@ -109,6 +105,7 @@ function Cell() {
                 for (let k=0; k < 3; k++) {
                     if (currentBoard[i].getValue() === currentBoard[i + 2].getValue() &&
                         currentBoard[i].getValue() === currentBoard[i + 4].getValue()) {
+                            winnerSymbol = currentBoard[i].getValue();
                             return true;
                     }
                 }
@@ -131,7 +128,7 @@ function Cell() {
             let isGameOver = checkWinner();
             if (isGameOver) {
                 console.log("Game Over");
-                return;
+                announceWinner(winnerSymbol);
             }
             // switchPlayer();
         } else {
@@ -140,4 +137,8 @@ function Cell() {
     }
 
     // Announce the winner
+    function announceWinner(winner) {
+        const player = (winner === players[0].symbol) ? players[0] : players[1];
+        console.log(`Winner is ${player.name}`)
+    }
 // }
