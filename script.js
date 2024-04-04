@@ -185,6 +185,8 @@ function gameDisplay() {
     }
 
     boardDiv.addEventListener('click', (e) => {
-        console.log(e.target.dataset.index);
+        const cell = e.target.dataset.index;
+        console.log(cell);
+        game.playGame(cell)
     })
 }
