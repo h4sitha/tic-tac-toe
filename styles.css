@@ -4,3 +4,17 @@ body {
     place-content: center;
     min-height: 100vh;
 }
+
+.cell {
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightgray;
+}
+
+#gameboard {
+    width: 450px;
+    height: 450px;
+    border: 1px solid gray;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

@@ -169,3 +169,17 @@ const game = (function Gameplay() {
     }
     
 })();
+
+
+function gameDisplay() {
+    const boardDiv = document.querySelector('#gameboard');
+    const statusPara = document.querySelector('#status');
+    
+    const board = Gameboard();
+
+    for(let i=0; i < board.getBoard().length; i++) {
+        const cell = document.createElement('button');
+        cell.classList.add('cell');
+        boardDiv.appendChild(cell);
+    }
+}
