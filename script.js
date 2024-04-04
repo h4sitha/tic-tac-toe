@@ -113,13 +113,6 @@ function Cell() {
         }
     }
 
-    // Play round
-        // Print current player
-        // Change value of the cell
-        // Print the board
-        // Switch player
-        // Repeat
-
     let isGameOver = false;
 
     function playGame(cell) {
@@ -129,7 +122,7 @@ function Cell() {
     }
 
     function playRound(cell) {
-        if (!board.getBoard()[cell].getValue()) {
+        if (cell < board.getBoard().length && cell >= 0 && !board.getBoard()[cell].getValue()) {
             console.log(`${getCurrentPlayer().name}'s turn...`);
             board.changeValue(getCurrentPlayer().symbol, cell);
             console.log(board.printBoard());
@@ -139,12 +132,12 @@ function Cell() {
                 announceWinner(winnerSymbol);
             }
             // switchPlayer();
+        } else if (cell >= board.getBoard().length || cell < 0) {
+            console.log("Enter a valid cell number!")
         } else {
             console.log("That cell is already marked")
         }
     }
-
-    // Announce the winner
     function announceWinner(winner) {
         const player = (winner === players[0].symbol) ? players[0] : players[1];
         console.log(`Winner is ${player.name}`)
