@@ -29,7 +29,7 @@ const board = (function() {
 })();
 
 function Cell() {
-    let value = 0;
+    let value = "";
 
     function updateValue(playerSymbol) {
         value = playerSymbol;
@@ -148,11 +148,14 @@ const game = (function Gameplay() {
             if (isGameTied) {
                 gameTied();
             }
-            switchPlayer();
+            if (!isGameOver && !isGameTied) {
+                switchPlayer();
+                gameStatusPara = `${getCurrentPlayer().name}'s turn...`;
+            }
         } else if (cell >= board.getBoard().length || cell < 0) {
-            gameStatusPara = "Enter a valid cell number!"
+            gameStatusPara += " Enter a valid cell number!"
         } else {
-            gameStatusPara = "That cell is already marked"
+            gameStatusPara += " That cell is already marked"
         }
     }
 
@@ -217,6 +220,7 @@ function gameDisplay() {
             btn.textContent = currentBoard[i].getValue();
             boardDiv.appendChild(btn);
         }
+        statusPara.textContent = game.showGameStatusPara();
     }
 
     updateDisplay();
