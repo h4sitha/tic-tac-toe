@@ -45,16 +45,16 @@ function Cell() {
     }
 }
 
-const game = (function Gameplay() {
+function Gameplay(firstPlayerName, secondPlayerName) {
     // const board = Gameboard();
 
     const players = [
         {
-            name: "PlayerOne",
+            name: firstPlayerName,
             symbol: "X"
         },
         {
-            name: "PlayerTwo",
+            name: secondPlayerName,
             symbol: "O"
         }
     ]
@@ -206,12 +206,15 @@ const game = (function Gameplay() {
         restartGame
     }
     
-})();
+};
 
 
-function gameDisplay() {
+function gameDisplay(firstPlayer, secondPlayer) {
+
     const boardDiv = document.querySelector('#gameboard');
     const statusPara = document.querySelector('#status');
+
+    const game = Gameplay(firstPlayer, secondPlayer);
     
     // const board = Gameboard();
 
@@ -262,9 +265,26 @@ function gameDisplay() {
     updateDisplay();
 }
 
-gameDisplay();
 
-const dialog = document.querySelector('#intro');
-document.addEventListener("DOMContentLoaded", () => {
+
+function startGame() {
+
+    const dialog = document.querySelector('#intro');
     dialog.showModal();
-})
+
+    const firstPlayerName = document.querySelector('#first-player');
+    const secondPlayerName = document.querySelector('#second-player');
+
+    let firstPlayer;
+    let secondPlayer;
+
+    const submitBtn = document.querySelector('form button');
+    submitBtn.addEventListener('click', () => {
+        firstPlayer = (firstPlayerName.value) ? firstPlayerName.value : "PlayerOne";
+        secondPlayer = (secondPlayerName.value) ? secondPlayerName.value : "PlayerTwo";
+        gameDisplay(firstPlayer, secondPlayer);
+    })
+
+}
+
+document.addEventListener('DOMContentLoaded', startGame());
