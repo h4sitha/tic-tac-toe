@@ -46,7 +46,6 @@ function Cell() {
 }
 
 function Gameplay(firstPlayerName, secondPlayerName) {
-    // const board = Gameboard();
 
     const players = [
         {
@@ -161,9 +160,9 @@ function Gameplay(firstPlayerName, secondPlayerName) {
                 gameStatusPara = `${getCurrentPlayer().name}'s turn...`;
             }
         } else if (cell >= board.getBoard().length || cell < 0) {
-            gameStatusPara += " Enter a valid cell number!"
+            gameStatusPara = "Enter a valid cell number!"
         } else {
-            gameStatusPara += " That cell is already marked"
+            gameStatusPara = "That cell is already marked"
         }
     }
 
@@ -215,15 +214,6 @@ function gameDisplay(firstPlayer, secondPlayer) {
     const statusPara = document.querySelector('#status');
 
     const game = Gameplay(firstPlayer, secondPlayer);
-    
-    // const board = Gameboard();
-
-    // for(let i=0; i < board.getBoard().length; i++) {
-    //     const cell = document.createElement('button');
-    //     cell.classList.add('cell');
-    //     cell.dataset.index = i;
-    //     boardDiv.appendChild(cell);
-    // }
 
     statusPara.textContent = game.showGameStatusPara();
 
@@ -248,7 +238,6 @@ function gameDisplay(firstPlayer, secondPlayer) {
         boardDiv.textContent = "";
         const currentBoard = board.getBoard();
         for (let i=0; i < currentBoard.length; i++) {
-            // console.log(i);
             const btn = document.createElement('button');
             btn.classList.add('cell');
             btn.dataset.index = i;
@@ -264,7 +253,6 @@ function gameDisplay(firstPlayer, secondPlayer) {
 
     updateDisplay();
 }
-
 
 
 function startGame() {
