@@ -195,6 +195,7 @@ const game = (function Gameplay() {
         isGameOver = false;
         isGameTied = false;
         switchFirstPlayer();
+        gameStatusPara = `${getCurrentPlayer().name}'s turn...`
     }
 
     return {
@@ -230,6 +231,13 @@ function gameDisplay() {
         updateDisplay();
     })
 
+    const restartBtn = document.createElement('button');
+    restartBtn.textContent = "Restart"
+    restartBtn.classList.add('restart');
+    restartBtn.addEventListener('click', () => {
+        game.restartGame();
+        updateDisplay();
+    })
     
     function updateDisplay() {
         boardDiv.textContent = "";
@@ -243,6 +251,10 @@ function gameDisplay() {
             boardDiv.appendChild(btn);
         }
         statusPara.textContent = game.showGameStatusPara();
+
+        if (game.showGameStatus() === "GameOver") {
+            statusPara.appendChild(restartBtn);
+        }
     }
 
     updateDisplay();
