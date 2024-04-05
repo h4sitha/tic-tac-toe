@@ -1,4 +1,4 @@
-function Gameboard() {
+const board = (function() {
     const gameboard = [];
 
     for (let i=0; i < 9; i++) {
@@ -26,7 +26,7 @@ function Gameboard() {
         changeValue,
         printBoard
     }
-}
+})();
 
 function Cell() {
     let value = 0;
@@ -46,7 +46,7 @@ function Cell() {
 }
 
 const game = (function Gameplay() {
-    const board = Gameboard();
+    // const board = Gameboard();
 
     const players = [
         {
@@ -189,22 +189,28 @@ function gameDisplay() {
     const boardDiv = document.querySelector('#gameboard');
     const statusPara = document.querySelector('#status');
     
-    const board = Gameboard();
+    // const board = Gameboard();
 
-    for(let i=0; i < board.getBoard().length; i++) {
-        const cell = document.createElement('button');
-        cell.classList.add('cell');
-        cell.dataset.index = i;
-        boardDiv.appendChild(cell);
+    // for(let i=0; i < board.getBoard().length; i++) {
+    //     const cell = document.createElement('button');
+    //     cell.classList.add('cell');
+    //     cell.dataset.index = i;
+    //     boardDiv.appendChild(cell);
+    // }
+
+    // boardDiv.addEventListener('click', (e) => {
+    //     if (game.showGameStatus() !== "GameOver") {
+    //         const cell = e.target;
+    //         console.log(cell.dataset.index);
+    //         cell.textContent = game.getCurrentPlayer().symbol;
+    //         game.playGame(cell.dataset.index);
+    //         statusPara.textContent = game.showGameStatusPara();
+    //     }
+    // })
+
+    function updateDisplay() {
+        board.printBoard();
     }
 
-    boardDiv.addEventListener('click', (e) => {
-        if (game.showGameStatus() !== "GameOver") {
-            const cell = e.target;
-            console.log(cell.dataset.index);
-            cell.textContent = game.getCurrentPlayer().symbol;
-            game.playGame(cell.dataset.index);
-            statusPara.textContent = game.showGameStatusPara();
-        }
-    })
+    updateDisplay();
 }
