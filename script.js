@@ -60,6 +60,7 @@ const game = (function Gameplay() {
     ]
 
     let currentPlayer = players[0];
+    let firstPlayer = currentPlayer;
 
     function getCurrentPlayer() {
         return currentPlayer;
@@ -67,6 +68,11 @@ const game = (function Gameplay() {
 
     function switchPlayer() {
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players [0];
+    }
+
+    function switchFirstPlayer() {
+        currentPlayer = (firstPlayer === players[0]) ? players[1] : players [0];
+        firstPlayer = currentPlayer;
     }
 
     let winnerSymbol;
@@ -188,7 +194,7 @@ const game = (function Gameplay() {
         board.printBoard();
         isGameOver = false;
         isGameTied = false;
-        currentPlayer = players[0]
+        switchFirstPlayer();
     }
 
     return {
