@@ -180,11 +180,23 @@ const game = (function Gameplay() {
         return gameStatusPara;
     }
 
+    function restartGame() {
+        const currentBoard = board.getBoard();
+        for (let i=0; i < currentBoard.length; i++) {
+            board.changeValue("", i);
+        }
+        board.printBoard();
+        isGameOver = false;
+        isGameTied = false;
+        currentPlayer = players[0]
+    }
+
     return {
         playGame,
         getCurrentPlayer,
         showGameStatus,
-        showGameStatusPara
+        showGameStatusPara,
+        restartGame
     }
     
 })();
@@ -217,7 +229,7 @@ function gameDisplay() {
         boardDiv.textContent = "";
         const currentBoard = board.getBoard();
         for (let i=0; i < currentBoard.length; i++) {
-            console.log(i);
+            // console.log(i);
             const btn = document.createElement('button');
             btn.classList.add('cell');
             btn.dataset.index = i;
