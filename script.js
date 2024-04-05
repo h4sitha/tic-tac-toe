@@ -263,3 +263,8 @@ function gameDisplay() {
 }
 
 gameDisplay();
+
+const dialog = document.querySelector('#intro');
+document.addEventListener("DOMContentLoaded", () => {
+    dialog.showModal();
+})
