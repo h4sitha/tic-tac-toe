@@ -114,19 +114,21 @@ const game = (function Gameplay() {
     }
 
     function checkTies() {
-        const currentBoard = board.getBoard();
-        let isTied = true;
-        for (let i=0; i < currentBoard.length; i++) {
-            if (!currentBoard[i].getValue()) {
-                isTied = false;
-                break;
+        if (!isGameOver) {
+            const currentBoard = board.getBoard();
+            let isTied = true;
+            for (let i=0; i < currentBoard.length; i++) {
+                if (!currentBoard[i].getValue()) {
+                    isTied = false;
+                    break;
+                }
             }
+            return isTied;
         }
-        return isTied;
     }
 
     let isGameOver = false;
-    let isGameTied;
+    let isGameTied = false;
     let gameStatusPara;
 
     function playGame(cell) {
