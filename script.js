@@ -129,7 +129,7 @@ const game = (function Gameplay() {
 
     let isGameOver = false;
     let isGameTied = false;
-    let gameStatusPara;
+    let gameStatusPara = `Pick a cell to start the game. ${getCurrentPlayer().name}'s turn...`;
 
     function playGame(cell) {
         if (!isGameOver) {
@@ -202,6 +202,8 @@ function gameDisplay() {
     //     cell.dataset.index = i;
     //     boardDiv.appendChild(cell);
     // }
+
+    statusPara.textContent = game.showGameStatusPara();
 
     boardDiv.addEventListener('click', (e) => {
         const selectedCell = e.target.dataset.index;
