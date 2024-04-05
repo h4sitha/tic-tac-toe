@@ -225,10 +225,12 @@ function gameDisplay() {
     statusPara.textContent = game.showGameStatusPara();
 
     boardDiv.addEventListener('click', (e) => {
-        const selectedCell = e.target.dataset.index;
-        console.log(selectedCell);
-        game.playGame(selectedCell);
-        updateDisplay();
+        if (e.target.dataset.index) {
+            const selectedCell = e.target.dataset.index;
+            console.log(selectedCell);
+            game.playGame(selectedCell);
+            updateDisplay();
+        }
     })
 
     const restartBtn = document.createElement('button');
