@@ -208,10 +208,12 @@ function Gameplay(firstPlayerName, secondPlayerName) {
 };
 
 
-function gameDisplay(firstPlayer, secondPlayer) {
+function gameDisplay() {
 
     const boardDiv = document.querySelector('#gameboard');
     const statusPara = document.querySelector('#status');
+
+    const { firstPlayer, secondPlayer } = introScreen.getPlayerNames();
 
     const game = Gameplay(firstPlayer, secondPlayer);
 
@@ -255,10 +257,7 @@ function gameDisplay(firstPlayer, secondPlayer) {
 }
 
 
-function startGame() {
-
-    const dialog = document.querySelector('#intro');
-    dialog.showModal();
+const introScreen = (function startGame() {
 
     const firstPlayerName = document.querySelector('#first-player');
     const secondPlayerName = document.querySelector('#second-player');
@@ -270,9 +269,22 @@ function startGame() {
     submitBtn.addEventListener('click', () => {
         firstPlayer = (firstPlayerName.value) ? firstPlayerName.value : "PlayerOne";
         secondPlayer = (secondPlayerName.value) ? secondPlayerName.value : "PlayerTwo";
-        gameDisplay(firstPlayer, secondPlayer);
+        gameDisplay();
     })
 
-}
+    function getPlayerNames() {
+        return {
+            firstPlayer,
+            secondPlayer
+        }
+    }
 
-document.addEventListener('DOMContentLoaded', startGame());
+    return {
+        getPlayerNames
+    }
+
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#intro').showModal();
+})
