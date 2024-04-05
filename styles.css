@@ -1,9 +1,20 @@
+:root {
+    --dark-color: #082f49;
+    --dark-color-low-opacity: #082f493d;
+    --dark-color-hover: #082f49de;
+    --light-color: #e0f2fe;
+    --lightest-color: #f0f9ff;
+    --lightest-color-hover: #f0f9ff73;
+}
+
 body {
     font-family: sans-serif;
     display: grid;
     place-content: center;
     min-height: 100vh;
     margin: 0;
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 * {
@@ -14,17 +25,22 @@ body {
 .cell {
     width: calc(100%/3);
     height: calc(100%/3);
-    border: 1px solid lightgray;
+    border: 1px solid var(--dark-color-low-opacity);
     box-sizing: border-box;
     font-size: 4rem;
+    background-color: var(--lightest-color);
+    color: inherit;
 }
 
 #gameboard {
     width: 450px;
     height: 450px;
-    border: 1px solid gray;
+    border: 2px solid var(--dark-color);
     display: flex;
     flex-wrap: wrap;
+    background-color: var(--lightest-color);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 #status {
@@ -46,11 +62,26 @@ h1 {
     padding: 3px 15px;
     margin-left: auto;
     font-size: 1rem;
+    color: inherit;
+    background-color: var(--lightest-color);
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+}
+
+.restart:hover {
+    background-color: var(--lightest-color-hover);
+}
+
+.restart:active {
+    background-color: var(--lightest-color);
 }
 
 dialog {
     padding: 30px;
     width: 350px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border-radius: 6px;
 }
 
 dialog h1 {
@@ -66,8 +97,13 @@ dialog input {
     display: block;
     width: 100%;
     margin-top: 8px;
-    padding: 4px 8px;
-    font-size: inherit;
+    padding: 5px 10px;
+    /* font-size: inherit; */
+    background-color: var(--lightest-color);
+    outline: 0;
+    border: 1px solid var(--dark-color);
+    border-radius: 4px;
+    color: inherit;
 }
 
 dialog button {
@@ -75,7 +111,22 @@ dialog button {
     width: 100%;
     padding: 8px;
     font-size: inherit;
-    border: 1px solid gray;
+    border: none;
+    background-color: var(--dark-color);
     border-radius: 4px;
     margin-top: 40px;
+    color: var(--light-color);
+    font-weight: bold;
+}
+
+dialog button:hover {
+    background-color: var(--dark-color-hover);
+}
+
+dialog button:active {
+    background-color: var(--dark-color);
+}
+
+::backdrop {
+    background-color: var(--lightest-color);
 }
