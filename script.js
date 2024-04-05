@@ -1,4 +1,4 @@
-const board = (function() {
+function Gameboard() {
     const gameboard = [];
 
     for (let i=0; i < 9; i++) {
@@ -26,7 +26,7 @@ const board = (function() {
         changeValue,
         printBoard
     }
-})();
+};
 
 function Cell() {
     let value = "";
@@ -46,6 +46,8 @@ function Cell() {
 }
 
 function Gameplay(firstPlayerName, secondPlayerName) {
+
+    const board = Gameboard();
 
     const players = [
         {
@@ -202,7 +204,8 @@ function Gameplay(firstPlayerName, secondPlayerName) {
         getCurrentPlayer,
         showGameStatus,
         showGameStatusPara,
-        restartGame
+        restartGame,
+        getBoard: board.getBoard
     }
     
 };
@@ -238,7 +241,7 @@ function gameDisplay() {
     
     function updateDisplay() {
         boardDiv.textContent = "";
-        const currentBoard = board.getBoard();
+        const currentBoard = game.getBoard();
         for (let i=0; i < currentBoard.length; i++) {
             const btn = document.createElement('button');
             btn.classList.add('cell');
