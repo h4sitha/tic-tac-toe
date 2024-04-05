@@ -3,11 +3,13 @@ body {
     display: grid;
     place-content: center;
     min-height: 100vh;
+    margin: 0;
 }
 
-/* * {
-    border: 1px solid gray; 
-} */
+* {
+    /* border: 1px solid gray; */
+    box-sizing: border-box;
+}
 
 .cell {
     width: calc(100%/3);
@@ -44,4 +46,36 @@ h1 {
     padding: 3px 15px;
     margin-left: auto;
     font-size: 1rem;
+}
+
+dialog {
+    padding: 30px;
+    width: 350px;
+}
+
+dialog h1 {
+    margin: 10px 0 30px 0;
+}
+
+dialog p:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
+dialog input {
+    /* padding: 8px 10px; */
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 4px 8px;
+    font-size: inherit;
+}
+
+dialog button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: inherit;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin-top: 40px;
 }
