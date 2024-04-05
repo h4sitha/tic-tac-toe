@@ -198,19 +198,28 @@ function gameDisplay() {
     //     boardDiv.appendChild(cell);
     // }
 
-    // boardDiv.addEventListener('click', (e) => {
-    //     if (game.showGameStatus() !== "GameOver") {
-    //         const cell = e.target;
-    //         console.log(cell.dataset.index);
-    //         cell.textContent = game.getCurrentPlayer().symbol;
-    //         game.playGame(cell.dataset.index);
-    //         statusPara.textContent = game.showGameStatusPara();
-    //     }
-    // })
+    boardDiv.addEventListener('click', (e) => {
+        const selectedCell = e.target.dataset.index;
+        console.log(selectedCell);
+        game.playGame(selectedCell);
+        updateDisplay();
+    })
 
+    
     function updateDisplay() {
-        board.printBoard();
+        boardDiv.textContent = "";
+        const currentBoard = board.getBoard();
+        for (let i=0; i < currentBoard.length; i++) {
+            console.log(i);
+            const btn = document.createElement('button');
+            btn.classList.add('cell');
+            btn.dataset.index = i;
+            btn.textContent = currentBoard[i].getValue();
+            boardDiv.appendChild(btn);
+        }
     }
 
     updateDisplay();
 }
+
+gameDisplay();
